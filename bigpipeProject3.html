@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BigPipe Example 2</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .pagelet {
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      margin: 20px;
+      padding: 20px;
+      color: #333;
+      background-color: #fff;
+      width: 350px;
+      text-align: center;
+    }
+
+    .pagelet4 { background-color: #8e44ad; color: #fff; } /* Purple */
+    .pagelet5 { background-color: #2479b2; color: #fff; } /* Blue */
+    .pagelet6 { background-color: #d93ce7; color: #fff; } /* Pink */
+    .pagelet7 { background-color: #83e73c; color: #fff; } /* green */
+  </style>
+</head>
+<body>
+  <div id="pagelet-container"></div>
+
+  <script>
+    function simulateServerDelay() {
+      return new Promise(resolve => setTimeout(resolve, 1500));
+    }
+
+    function renderPagelet(id, content, className) {
+      const container = document.getElementById('pagelet-container');
+      const pagelet = document.createElement('div');
+      pagelet.className = `pagelet ${className}`;
+      pagelet.id = id;
+      pagelet.innerHTML = content;
+      container.appendChild(pagelet);
+    }
+
+    async function loadPage() {
+      await simulateServerDelay();
+      renderPagelet('pagelet4', '<h2>Pagelet 4</h2><p>This is the content of pagelet 4.</p>', 'pagelet4');
+      await simulateServerDelay();
+      renderPagelet('pagelet5', '<h2>Pagelet 5</h2><p>This is the content of pagelet 5.</p>', 'pagelet5');
+      await simulateServerDelay();
+      renderPagelet('pagelet6', '<h2>Pagelet 6</h2><p>This is the content of pagelet 6.</p>', 'pagelet6');
+      await simulateServerDelay();
+      renderPagelet('pagelet7', '<h2>Pagelet 7</h2><p>This is the content of pagelet 7.</p>', 'pagelet7');
+    }
+
+    window.onload = loadPage;
+  </script>
+</body>
+</html>
